@@ -1,0 +1,17 @@
+services:
+  oracle-db:
+    image: unipat/oracle-database:19.24
+    container_name: oracle-database
+    ports:
+      - "1521:1521" # Oracle Listener
+      - "5500:5500" # Oracle Enterprise Manager Express
+    environment:
+      - ORACLE_SID=ORCLCDB        # Change SID if needed
+      - ORACLE_PDB=ORCLPDB1       # Default Pluggable Database
+      - ORACLE_PWD=YourPassword123 # Change to your preferred password      
+    volumes:
+      - oracle_data:/opt/oracle/oradata # Persistent storage for database files
+
+volumes:
+  oracle_data:
+    driver: local
